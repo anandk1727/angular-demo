@@ -1,8 +1,12 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { InputTextModule } from 'primeng/inputtext';
+import { TextareaModule } from 'primeng/textarea';
+import { RouterModule } from '@angular/router';
+import { GlobalHeaderComponent } from '../libs/shared/ui/global-header/header.component';
 
 @Component({
-  imports: [RouterOutlet],
+  imports: [FormsModule, InputTextModule, TextareaModule, RouterModule, GlobalHeaderComponent],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',

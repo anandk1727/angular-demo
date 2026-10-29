@@ -9,7 +9,7 @@
       "@global/ui": ["./src/libs/shared/ui/index.ts"],
       "@scout": ["./src/libs/scout/index.ts"],
       "@contact": ["./src/libs/contact/index.ts"],
-      "@shared/util": ["./src/libs/shared/util/index.ts"]
+      "@global/utils": ["./src/libs/shared/utils/index.ts"]
     }
   },
   "include": ["src/**/*.ts"],

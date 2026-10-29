@@ -15,7 +15,7 @@ export default [
       },
       'boundaries/elements': [
         { type: 'ui', pattern: 'src/libs/*/ui', partialMatch: false, capture: ['scope'] },
-        { type: 'util', pattern: 'src/libs/*/util', partialMatch: false, capture: ['scope'] },
+        { type: 'utils', pattern: 'src/libs/*/utils', partialMatch: false, capture: ['scope'] },
         { type: 'lib', pattern: 'src/libs/*', partialMatch: false, capture: ['scope'] },
         { type: 'app', pattern: 'src/app', partialMatch: false },
       ],
@@ -38,7 +38,7 @@ export default [
               allow: {
                 to: {
                   file: { path: '**/index.ts' },
-                  element: { type: 'util', captured: { scope: 'shared' } },
+                  element: { type: 'utils', captured: { scope: 'shared' } },
                 },
               },
             },

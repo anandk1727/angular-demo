@@ -1,0 +1,14 @@
+import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { toggleDarkMode } from '@global/utils';
+
+@Component({
+  selector: 'global-header',
+  templateUrl: './header.component.html',
+  imports: [RouterLink],
+})
+export class GlobalHeaderComponent {
+  protected toggleTheme() {
+    toggleDarkMode();
+  }
+}
