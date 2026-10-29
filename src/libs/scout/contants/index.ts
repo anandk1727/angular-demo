@@ -1,0 +1,48 @@
+import { formatDate } from '@angular/common';
+import { ColDef } from 'ag-grid-community';
+import { ScoutObject } from '../types';
+
+export const DefaultColRef = {
+  sortable: true,
+  filter: true,
+  floatingFilter: true,
+  resizable: true,
+  minWidth: 110,
+};
+
+export const ScoutColDef: ColDef<ScoutObject>[] = [
+  { field: 'designation', headerName: 'Object', pinned: 'left', cellDataType: 'text' },
+  {
+    field: 'rating',
+    headerName: 'Rating',
+    cellDataType: 'number',
+    valueFormatter: (p) => p.value ?? '—',
+  },
+  { field: 'neoScore', headerName: 'NEO %', cellDataType: 'number', sort: 'desc' },
+  { field: 'phaScore', headerName: 'PHA %', cellDataType: 'number' },
+  {
+    field: 'closeApproachLd',
+    headerName: 'CA dist (LD)',
+    cellDataType: 'number',
+    valueFormatter: (p) => p.value ?? '—',
+  },
+  {
+    field: 'vInfKms',
+    headerName: 'V∞ (km/s)',
+    cellDataType: 'number',
+    valueFormatter: (p) => p.value ?? '—',
+  },
+  { field: 'absoluteMagnitude', headerName: 'H', cellDataType: 'number' },
+  { field: 'visualMagnitude', headerName: 'V mag', cellDataType: 'number' },
+  { field: 'observations', headerName: 'Obs', cellDataType: 'number' },
+  { field: 'arcDays', headerName: 'Arc (days)', cellDataType: 'number' },
+  { field: 'elongationDeg', headerName: 'Elong (°)', cellDataType: 'number' },
+  { field: 'rateArcsecPerMin', headerName: 'Rate ("/min)', cellDataType: 'number' },
+  { field: 'uncertaintyArcmin', headerName: 'Unc (′)', cellDataType: 'number' },
+  {
+    field: 'lastRun',
+    headerName: 'Last run (UTC)',
+    cellDataType: 'date',
+    valueFormatter: (p) => (p.value ? formatDate(p.value, 'dd MMM HH:mm', 'en', 'UTC') : '—'),
+  },
+];

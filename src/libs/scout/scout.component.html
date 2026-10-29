@@ -1,3 +1,18 @@
+<button pButton [loading]="store.isLoading()" (click)="store.load()">Refresh</button>
+
 @if (store.status() === 'success') {
-  <p>Success</p>
+  <p>success</p>
+}
+
+<ag-grid-angular
+  [rowData]="store.objects()"
+  class="h-full"
+  [loading]="store.isLoading()"
+  [getRowId]="getRowId"
+  [columnDefs]="colDefs"
+  (rowClicked)="onRowClicked($event)"
+/>
+
+@if (store.selected(); as obj) {
+  <!-- detail panel / drawer -->
 }
