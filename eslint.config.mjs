@@ -14,10 +14,10 @@ export default [
         typescript: { project: './tsconfig.app.json' },
       },
       'boundaries/elements': [
-        { type: 'ui', pattern: 'src/libs/*/ui', partialMatch: false, capture: ['scope'] },
-        { type: 'utils', pattern: 'src/libs/*/utils', partialMatch: false, capture: ['scope'] },
-        { type: 'lib', pattern: 'src/libs/*', partialMatch: false, capture: ['scope'] },
-        { type: 'app', pattern: 'src/app', partialMatch: false },
+        { type: 'ui', pattern: 'src/libs/shared/ui' },
+        { type: 'utils', pattern: 'src/libs/shared/utils' },
+        { type: 'lib', pattern: 'src/libs/*', capture: ['scope'] },
+        { type: 'app', pattern: 'src/app' },
       ],
     },
     rules: {

@@ -3,6 +3,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting, HttpTestingController } from '@angular/common/http/testing';
 import { scoutStore } from './scout.store';
 import { RawData } from '../contants/_specData';
+import { API_BASE_URL } from '@shared/utils';
 
 const URL = '/api/scout.api';
 const response = { signature: { version: '1.3', source: 'test' }, count: '1', data: [RawData] };
@@ -12,7 +13,11 @@ describe('scoutStore', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [provideHttpClient(), provideHttpClientTesting()],
+      providers: [
+        provideHttpClient(),
+        provideHttpClientTesting(),
+        { provide: API_BASE_URL, useValue: '/api' },
+      ],
     });
     http = TestBed.inject(HttpTestingController);
   });
