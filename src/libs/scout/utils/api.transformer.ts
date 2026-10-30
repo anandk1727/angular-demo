@@ -37,3 +37,10 @@ function toUtcDate(value: string | null | undefined): Date | null {
   const date = new Date(`${value.replace(' ', 'T')}Z`);
   return Number.isNaN(date.getTime()) ? null : date;
 }
+
+export function calculateRiskPercentage(data: ScoutObject) {
+  //  Scout Rating Normalization (0 - 4 mapped to 0 - 100)
+  const scoutRating = ((data.rating || 0) / 4) * 100;
+
+  return (data.phaScore + scoutRating + data.neoScore) / 3;
+}

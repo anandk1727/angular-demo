@@ -1,6 +1,7 @@
 import { formatDate } from '@angular/common';
 import { ColDef } from 'ag-grid-community';
 import { ScoutObject } from '../types';
+import { calculateRiskPercentage } from '../utils/api.transformer';
 
 export const DefaultColRef = {
   sortable: true,
@@ -11,8 +12,15 @@ export const DefaultColRef = {
 };
 
 export const ScoutColDef: ColDef<ScoutObject>[] = [
-  { field: 'designation', headerName: 'Object', pinned: 'left', cellDataType: 'text' },
   {
+    field: 'designation',
+    headerName: 'Object',
+    pinned: 'left',
+    cellDataType: 'text',
+    filter: true,
+  },
+  {
+    filter: true,
     field: 'rating',
     headerName: 'Rating',
     cellDataType: 'number',
@@ -44,5 +52,13 @@ export const ScoutColDef: ColDef<ScoutObject>[] = [
     headerName: 'Last run (UTC)',
     cellDataType: 'date',
     valueFormatter: (p) => (p.value ? formatDate(p.value, 'dd MMM HH:mm', 'en', 'UTC') : '—'),
+  },
+  {
+    colId: 'risk',
+    headerName: 'Risk ',
+    cellDataType: 'string',
+    sort: 'desc',
+    valueGetter: (p) => (p.data ? calculateRiskPercentage(p.data) : null),
+    valueFormatter: (p) => (p.value == null ? '—' : `${Math.round(p.value)}%`),
   },
 ];

@@ -8,7 +8,6 @@ import { GlobalHeaderComponent } from '../libs/shared/ui/global-header/header.co
 @Component({
   imports: [FormsModule, InputTextModule, TextareaModule, RouterModule, GlobalHeaderComponent],
   selector: 'app-root',
-  styleUrl: './app.css',
   templateUrl: './app.html',
 })
 export class App {
