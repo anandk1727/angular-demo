@@ -1,18 +1,38 @@
-<button pButton [loading]="store.isLoading()" (click)="store.load()">Refresh</button>
-
-@if (store.status() === 'success') {
-  <p>success</p>
-}
+<div class="flex justify-between pb-4">
+  <input
+    pInputText
+    type="search"
+    placeholder="Search objects…"
+    [value]="quickFilter()"
+    (input)="quickFilter.set($any($event.target).value)"
+  />
+  <button pButton [loading]="store.isLoading()" (click)="store.load()">Refresh</button>
+</div>
 
 <ag-grid-angular
   [rowData]="store.objects()"
-  class="h-full"
+  class="h-[80%]"
   [loading]="store.isLoading()"
   [getRowId]="getRowId"
   [columnDefs]="colDefs"
   (rowClicked)="onRowClicked($event)"
+  [quickFilterText]="quickFilter()"
+  [theme]="theme"
 />
 
 @if (store.selected(); as obj) {
-  <!-- detail panel / drawer -->
+  <p-dialog
+    [header]="`Object - ${store.selected()?.designation}`"
+    [modal]="true"
+    [visible]="!!store.selected()"
+    [style]="{ width: '60vw' }"
+    (visibleChange)="store.select(null)"
+  >
+    <dl class="grid grid-cols-2 gap-x-4 gap-y-2 max-h-[500px] pb-4!">
+      @for (entry of store.selected() | keyvalue; track entry.key) {
+        <dt class="text-muted-color">{{ entry.key }}</dt>
+        <dd>{{ entry.value ?? '—' }}</dd>
+      }
+    </dl>
+  </p-dialog>
 }
