@@ -1,14 +1,12 @@
 import { Component, signal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { InputTextModule } from 'primeng/inputtext';
-import { TextareaModule } from 'primeng/textarea';
 import { RouterModule } from '@angular/router';
-import { GlobalHeaderComponent } from '../libs/shared/ui/global-header/header.component';
+import { GlobalHeaderComponent } from '@shared/ui';
 
 @Component({
-  imports: [FormsModule, InputTextModule, TextareaModule, RouterModule, GlobalHeaderComponent],
+  imports: [RouterModule, GlobalHeaderComponent],
   selector: 'app-root',
   templateUrl: './app.html',
+  styleUrl: './app.css',
 })
 export class App {
   protected readonly title = signal('angular-demo');

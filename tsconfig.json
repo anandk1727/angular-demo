@@ -3,6 +3,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "strict": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
@@ -14,10 +15,10 @@
     "target": "ES2022",
     "module": "preserve",
     "paths": {
-      "@global/ui": ["./src/libs/shared/ui/index.ts"],
+      "@shared/ui": ["./src/libs/shared/ui/index.ts"],
       "@scout": ["./src/libs/scout/index.ts"],
       "@contact": ["./src/libs/contact/index.ts"],
-      "@global/utils": ["./src/libs/shared/utils/index.ts"]
+      "@shared/utils": ["./src/libs/shared/utils/index.ts"]
     }
   },
   "angularCompilerOptions": {

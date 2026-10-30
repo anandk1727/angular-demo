@@ -10,6 +10,7 @@ import { MessageModule } from 'primeng/message';
   selector: 'app-contact',
   templateUrl: './contact.component.html',
   imports: [InputTextModule, TextareaModule, ReactiveFormsModule, ButtonModule, MessageModule],
+  providers: [contactStore],
 })
 export class ContactComponent {
   private _fb = inject(FormBuilder);

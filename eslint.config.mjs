@@ -24,23 +24,52 @@ export default [
       'boundaries/dependencies': [
         'error',
         {
-          default: 'allow',
+          default: 'disallow',
           policies: [
-            // shared/ui: block every local import...
+            // always allow extrnal package imports
+            { from: { element: { type: '*' } }, allow: { to: { module: { origin: 'external' } } } },
+            // app -  any lib, through the index file
             {
-              from: { element: { type: 'ui', captured: { scope: 'shared' } } },
-              disallow: { to: { module: { origin: 'local' } } }, //any local import will be rejected
-              message: 'shared/ui may only import from @shared/util (its index.ts).',
-            },
-            // ...except the shared/util public API (later policies win)
-            {
-              from: { element: { type: 'ui', captured: { scope: 'shared' } } },
+              from: { element: { type: 'app' } },
               allow: {
                 to: {
                   file: { path: '**/index.ts' },
-                  element: { type: 'utils', captured: { scope: 'shared' } },
+                  element: { types: { anyOf: ['lib', 'ui', 'utils'] } },
                 },
               },
+            },
+            // lib - its own files, shared libs index file
+            {
+              from: { element: { type: 'lib' } },
+              allow: [
+                {
+                  to: {
+                    element: {
+                      type: 'lib',
+                      captured: { scope: '{{ from.element.captured.scope }}' },
+                    },
+                  },
+                },
+                {
+                  to: {
+                    file: { path: '**/index.ts' },
+                    element: { types: { anyOf: ['ui', 'utils'] } },
+                  },
+                },
+              ],
+            },
+            // shared-ui -  itself, shared-utils
+            {
+              from: { element: { type: 'ui' } },
+              allow: [
+                { to: { element: { type: 'ui' } } },
+                { to: { file: { path: '**/index.ts' }, element: { type: 'utils' } } },
+              ],
+            },
+            // shared-utils - itself only
+            {
+              from: { element: { type: 'utils' } },
+              allow: { to: { element: { type: 'utils' } } },
             },
           ],
         },

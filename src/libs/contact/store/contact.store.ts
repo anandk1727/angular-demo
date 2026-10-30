@@ -13,7 +13,6 @@ interface ContactState {
 }
 
 export const contactStore = signalStore(
-  { providedIn: 'root' },
   withState(initialState),
 
   withMethods((store, api = inject(ContactApiService)) => ({

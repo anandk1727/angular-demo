@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { toggleDarkMode } from '@global/utils';
+import { toggleDarkMode } from '@shared/utils';
 
 @Component({
   selector: 'global-header',
