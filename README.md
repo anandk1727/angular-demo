@@ -57,3 +57,36 @@ Angular CLI does not come with an end-to-end testing framework by default. You c
 ## Additional Resources
 
 For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+## 🏛️ Architecture & Folder Structure
+
+The application adopts a Domain-Driven Modular Library Architecture located under src/libs/. Each domain feature operates as an encapsulated, loosely coupled module exposing a public API barrel (index.ts). This enforces strict boundary controls and prevents circular dependencies between domain verticals.
+src/
+├── app/
+│ ├── app.config.ts # Application-level providers (routes, HTTP, PrimeNG config)
+│ ├── app.html # Root template (shell, accessible header, router-outlet)
+│ ├── app.routes.ts # Lazy-loaded feature routes
+│ └── app.ts # Root App component
+├── libs/
+│ ├── contact/ # Contact Domain Feature
+│ │ ├── services/ # Inquiries & submission API handlers
+│ │ ├── store/ # Contact feature SignalStore
+│ │ ├── ui/ # Dumb/presentational form and card components
+│ │ ├── contact.component.html
+│ │ ├── contact.component.ts # Smart routed feature container
+│ │ └── index.ts # Public API barrel export
+│ ├── scout/ # NASA Scout / Asteroid Monitoring Domain
+│ │ ├── contants/ # Threshold constants & mathematical weights
+│ │ ├── services/ # NASA Scout HTTP client integrations
+│ │ ├── store/ # NgRx SignalStore (data, apiState, selections)
+│ │ ├── types/ # Strict TypeScript interfaces & API models
+│ │ ├── utils/ # Risk Index & asteroid sizing algorithms
+│ │ ├── index.ts # Public API barrel export
+│ │ ├── scout.component.html
+│ │ └── scout.component.ts # Smart feature dashboard container
+│ └── shared/ # Cross-Cutting Core
+│ ├── ui/ # Reusable UI widgets, badges, navigation landmarks
+│ └── utils/ # Formatters, date parsers, math helpers
+├── index.html # Root HTML document
+├── main.ts # Application bootstrap
+└── styles.css # Global design tokens, Tailwind base, and PrimeNG layer
