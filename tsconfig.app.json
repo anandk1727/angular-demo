@@ -3,14 +3,7 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "types": [],
-
-    "paths": {
-      "@global/ui": ["./src/libs/shared/ui/index.ts"],
-      "@scout": ["./src/libs/scout/index.ts"],
-      "@contact": ["./src/libs/contact/index.ts"],
-      "@global/utils": ["./src/libs/shared/utils/index.ts"]
-    }
+    "types": []
   },
   "include": ["src/**/*.ts"],
   "exclude": ["src/**/*.spec.ts"]

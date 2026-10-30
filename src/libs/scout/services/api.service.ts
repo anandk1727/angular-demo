@@ -3,7 +3,7 @@ import { inject, Service } from '@angular/core';
 
 import { ScoutApiResponse } from '../types';
 import { map } from 'rxjs';
-import { toScoutObject } from '../utils/api.transformer';
+import { toScoutObject } from '../utils/transformer/api.transformer';
 
 @Service()
 export class ScoutApiService {

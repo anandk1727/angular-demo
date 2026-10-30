@@ -1,4 +1,4 @@
-import { ScoutApiData, ScoutObject } from '../types';
+import { ScoutApiData, ScoutObject } from '../../types';
 
 export function toScoutObject(raw: ScoutApiData): ScoutObject {
   return {
@@ -29,13 +29,13 @@ export function toScoutObject(raw: ScoutApiData): ScoutObject {
 function toNumber(value: string | number | null | undefined): number | null {
   if (value === null || value === undefined || value === '') return null;
   const n = Number(value);
-  return Number.isFinite(n) ? n : null;
+  return n ?? null;
 }
 
 function toUtcDate(value: string | null | undefined): Date | null {
   if (!value) return null;
   const date = new Date(`${value.replace(' ', 'T')}Z`);
-  return Number.isNaN(date.getTime()) ? null : date;
+  return date;
 }
 
 export function calculateRiskPercentage(data: ScoutObject) {
