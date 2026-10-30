@@ -1,3 +1,16 @@
+<div aria-live="polite">
+  @switch (store.status()) {
+    @case ('success') {
+      <p-message severity="success"
+        >Thanks! We'll get back to you within 2 business days.
+      </p-message>
+    }
+    @case ('error') {
+      <p-message severity="error">{{ store.error() }} </p-message>
+    }
+  }
+</div>
+
 <section class="py-16 px-6 sm:py-24 lg:px-8">
   <div class="mx-auto max-w-6xl">
     <!-- Header -->
@@ -168,7 +181,9 @@
             }
           </div>
 
-          <button pButton type="submit">Send Message</button>
+          <button pButton type="submit" [loading]="store.status() === 'submitting'">
+            Send Message
+          </button>
         </form>
       </div>
     </div>

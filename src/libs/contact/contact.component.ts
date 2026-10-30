@@ -1,16 +1,19 @@
-import { Component, inject } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import { InputTextModule } from 'primeng/inputtext';
 import { TextareaModule } from 'primeng/textarea';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
+import { contactStore } from './store/contact.store';
+import { MessageModule } from 'primeng/message';
 
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
-  imports: [InputTextModule, TextareaModule, ReactiveFormsModule, ButtonModule],
+  imports: [InputTextModule, TextareaModule, ReactiveFormsModule, ButtonModule, MessageModule],
 })
 export class ContactComponent {
   private _fb = inject(FormBuilder);
+  protected store = inject(contactStore);
 
   protected readonly form = this._fb.group({
     name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(10)]],
@@ -20,12 +23,19 @@ export class ContactComponent {
     message: ['', [Validators.required]],
   });
 
+  constructor() {
+    effect(() => {
+      if (this.store.status() === 'success') this.form.reset();
+    });
+  }
+
   onSubmit() {
     if (!this.form.valid) {
       this.form.markAllAsTouched();
       console.log(this.form.get('name')?.errors);
       return;
     }
-    console.log(this.form.getRawValue());
+
+    this.store.submit(this.form.getRawValue());
   }
 }
