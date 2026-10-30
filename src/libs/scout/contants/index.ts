@@ -1,14 +1,14 @@
 import { formatDate } from '@angular/common';
-import { ColDef } from 'ag-grid-community';
+import { AutoSizeStrategy, ColDef } from 'ag-grid-community';
 import { ScoutObject } from '../types';
 import { calculateRiskPercentage } from '../utils/transformer/api.transformer';
 
 export const DefaultColRef = {
   sortable: true,
   filter: true,
-  floatingFilter: true,
   resizable: true,
   minWidth: 110,
+  width: 150,
 };
 
 export const ScoutColDef: ColDef<ScoutObject>[] = [
@@ -17,7 +17,8 @@ export const ScoutColDef: ColDef<ScoutObject>[] = [
     headerName: 'Object',
     pinned: 'left',
     cellDataType: 'text',
-    filter: true,
+
+    lockPinned: true,
   },
   {
     filter: true,
