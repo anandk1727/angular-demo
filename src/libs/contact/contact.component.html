@@ -84,6 +84,13 @@
               placeholder="Jordan Rivera"
               class="w-full"
             />
+            @if (form.get('name')?.touched && form.get('name')?.invalid) {
+              @if (form.get('name')?.hasError('required')) {
+                <p class="text-red-500 text-xs">name is required</p>
+              } @else {
+                <p class="text-red-500 text-xs">enter a valid name</p>
+              }
+            }
           </div>
 
           <!-- Work Email Address -->
@@ -99,6 +106,13 @@
               placeholder="you@company.com"
               class="w-full"
             />
+            @if (form.get('email')?.touched && form.get('email')?.invalid) {
+              @if (form.get('email')?.hasError('required')) {
+                <p class="text-red-500 text-xs">email is required</p>
+              } @else {
+                <p class="text-red-500 text-xs">enter a valid email</p>
+              }
+            }
           </div>
 
           <!-- Company Name -->
@@ -112,6 +126,9 @@
               placeholder="Optional"
               class="w-full"
             />
+            @if (form.get('company')?.touched && form.get('company')?.invalid) {
+              <p class="text-red-500 text-xs">enter a valid company name</p>
+            }
           </div>
 
           <!-- Number of Employees -->
@@ -127,6 +144,9 @@
               placeholder="e.g. 10–50"
               class="w-full"
             />
+            @if (form.get('employee_count')?.touched && form.get('employee_count')?.invalid) {
+              <p class="text-red-500 text-xs">enter a valid employee count</p>
+            }
           </div>
 
           <!-- Your Message -->
@@ -143,9 +163,12 @@
               required
               class="w-full"
             ></textarea>
+            @if (form.get('message')?.touched && form.get('message')?.invalid) {
+              <p class="text-red-500 text-xs">enter a valid message</p>
+            }
           </div>
 
-          <button pButton type="submit">Submit</button>
+          <button pButton type="submit">Send Message</button>
         </form>
       </div>
     </div>

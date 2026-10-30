@@ -13,14 +13,19 @@ export class ContactComponent {
   private _fb = inject(FormBuilder);
 
   protected readonly form = this._fb.group({
-    name: ['', [Validators.required]],
-    email: ['', [Validators.email, Validators.required]],
-    company: [''],
+    name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(10)]],
+    email: ['', [Validators.required, Validators.pattern(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/)]],
+    company: ['', [Validators.minLength(2), Validators.maxLength(10)]],
     employee_count: [''],
     message: ['', [Validators.required]],
   });
 
   onSubmit() {
+    if (!this.form.valid) {
+      this.form.markAllAsTouched();
+      console.log(this.form.get('name')?.errors);
+      return;
+    }
     console.log(this.form.getRawValue());
   }
 }

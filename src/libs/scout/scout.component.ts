@@ -7,9 +7,13 @@ import { ScoutObject } from './types';
 import { ButtonModule } from 'primeng/button';
 import { DefaultColRef, ScoutColDef } from './contants';
 import { InputTextModule } from 'primeng/inputtext';
-import { scoutGridTheme } from '@global/ui';
 import { DialogModule } from 'primeng/dialog';
 import { KeyValuePipe } from '@angular/common';
+import { AllCommunityModule, ModuleRegistry } from 'ag-grid-community';
+import { scoutGridTheme } from './utils/scout.theme';
+
+// Register all Community features
+ModuleRegistry.registerModules([AllCommunityModule]);
 
 @Component({
   selector: 'app-scout',

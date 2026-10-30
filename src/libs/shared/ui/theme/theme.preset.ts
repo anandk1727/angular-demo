@@ -1,6 +1,5 @@
 import { definePreset } from '@primeuix/themes';
 import Aura from '@primeuix/themes/aura';
-import { themeQuartz } from 'ag-grid-community';
 
 export const customPreset = definePreset(Aura, {
   semantic: {
@@ -58,13 +57,4 @@ export const customPreset = definePreset(Aura, {
       },
     },
   },
-});
-
-export const scoutGridTheme = themeQuartz.withParams({
-  backgroundColor: 'var(--p-content-background)',
-  foregroundColor: 'var(--p-text-color)',
-  textColor: 'var(--p-text-color)',
-
-  fontFamily: 'inherit',
-  browserColorScheme: 'inherit',
 });
